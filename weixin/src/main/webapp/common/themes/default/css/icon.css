@@ -1,0 +1,154 @@
+.icon-blank{
+	background:url('../images/icon/blank.gif') no-repeat center center;
+}
+.icon-add{
+	margin-top: 5px !important;
+	background:url('../images/icon/edit_add.png') no-repeat center center;
+}
+.icon-edit{
+	left: -1px !important;
+	background:url('../images/icon/icon_more.png') no-repeat center center;
+}
+.icon-clear{
+	background:url('../images/icon/clear.png') no-repeat center center;
+}
+.icon-remove{
+	background:url('../images/icon/edit_remove.png') no-repeat center center;
+}
+.icon-save{
+	background:url('../images/icon/filesave.png') no-repeat center center;
+}
+.icon-cut{
+	background:url('../images/icon/cut.png') no-repeat center center;
+}
+.icon-ok{
+	background:url('../images/icon/ok.png') no-repeat center center;
+}
+.icon-no{
+	background:url('../images/icon/no.png') no-repeat center center;
+}
+.icon-cancel{
+	background:url('../images/icon/cancel.png') no-repeat center center;
+}
+.icon-reload{
+	background:url('../images/icon/reload.png') no-repeat center center;
+}
+.icon-search{
+	background:url('../images/icon/search.png') no-repeat center center;
+}
+.icon-print{
+	background:url('../images/icon/print.png') no-repeat center center;
+}
+.icon-help{
+	background:url('../images/icon/help.png') no-repeat center center;
+}
+.icon-undo{
+	background:url('../images/icon/undo.png') no-repeat center center;
+}
+.icon-redo{
+	background:url('../images/icon/redo.png') no-repeat center center;
+}
+.icon-back{
+	background:url('../images/icon/back.png') no-repeat center center;
+}
+.icon-sum{
+	background:url('../images/icon/sum.png') no-repeat center center;
+}
+.icon-tip{
+	background:url('../images/icon/tip.png') no-repeat center center;
+}
+.icon-filter{
+	background:url('../images/icon/filter.png') no-repeat center center;
+}
+.icon-man{
+	background:url('../images/icon/man.png') no-repeat center center;
+}
+.icon-lock{
+	background:url('../images/icon/lock.png') no-repeat center center;
+}
+.icon-more{
+	background:url('../images/icon/more.png') no-repeat center center;
+}
+
+
+.icon-mini-add{
+	background:url('../images/icon/mini_add.png') no-repeat center center;
+}
+.icon-mini-edit{
+	background:url('../images/icon/mini_edit.png') no-repeat center center;
+}
+.icon-mini-refresh{
+	background:url('../images/icon/mini_refresh.png') no-repeat center center;
+}
+
+.icon-large-picture{
+	background:url('../images/icon/large_picture.png') no-repeat center center;
+}
+.icon-large-clipart{
+	background:url('../images/icon/large_clipart.png') no-repeat center center;
+}
+.icon-large-shapes{
+	background:url('../images/icon/large_shapes.png') no-repeat center center;
+}
+.icon-large-smartart{
+	background:url('../images/icon/large_smartart.png') no-repeat center center;
+}
+.icon-large-chart{
+	background:url('../images/icon/large_chart.png') no-repeat center center;
+}
+
+.icon-device01{
+	background:url('../images/icon/device.png') no-repeat center center;
+}
+.icon-device02{
+	background:url('../images/icon/task.png') no-repeat center center;
+}
+.icon-device03{
+	background:url('../images/icon/overview.png') no-repeat center center;
+}
+.icon-device04{
+	background:url('../images/icon/news.png') no-repeat center center;
+}
+.icon-device05{
+	background:url('../images/icon/state01.png') no-repeat center center;
+}
+.icon-device06{
+	background:url('../images/icon/state02.png') no-repeat center center;
+}
+.icon-device07{
+	background:url('../images/icon/alarm.png') no-repeat center center;
+}
+.icon-device08{
+	background:url('../images/icon/strategy.png') no-repeat center center;
+}
+.icon-device09{
+	background:url('../images/icon/details.png') no-repeat center center;
+}
+.icon_check {
+	background: url(../images/com_ico019.png) no-repeat center center;
+}
+.icon_poweron {
+	left: -1px !important;
+	background: url(../images/icon/poweroff.png) no-repeat left center;
+}
+.icon_poweroff {
+	left: -1px !important;
+	background: url(../images/icon/poweron.png) no-repeat left center;
+}
+.icon_del {
+	background: url(../images/com_ico018.png) no-repeat center center;
+}
+.com_view {
+	padding: 8px;
+	background: url(../images/com_view.png) no-repeat center center;
+}
+.com_view:hover {
+	background: url(../images/com_view_on.png) no-repeat center center;
+}
+.com_del {
+	padding: 8px;
+	background: url(../images/com_ico_del.png) no-repeat center center;
+}
+.com_del:hover {
+	background: url(../images/com_ico_del_on.png) no-repeat center center;
+}

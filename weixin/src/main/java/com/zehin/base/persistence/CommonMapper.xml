@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zehin.base.persistence.CommonMapper" >
+
+    <!-- 根据数据字典组ID，查询下拉数据 -->
+    <select id="queryComboboxDataByGroupId" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT 
+        	d.detail_id AS detailId , d.detail_name AS detailName
+        FROM 
+        	sys_datadict_detail d 
+        WHERE 
+        	d.group_id = #{groupId}
+    </select>
+    
+    <!-- 根据用户自定义的sql查询下拉数据  -->
+	<select id="queryComboboxDataBySql" parameterType="java.lang.String" resultType="java.util.Map">
+	    ${sql}
+	</select>
+	
+	<!-- 根据用户自定义的sql查询datagrid数据 -->
+	<select id="queryDataGridData" parameterType="java.lang.String" resultType="java.util.Map">
+	    ${sql}
+	</select>
+  
+</mapper>

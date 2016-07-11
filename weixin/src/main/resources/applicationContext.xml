@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd"
+        default-lazy-init="false">
+        
+
+	<!-- 配置外部数据库连接信息-->
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<!-- 自动扫描的包名 -->
+	<context:component-scan base-package="com.zehin">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertiesFactoryBean">  
+	   <property name="locations">  
+	   	<list>  
+	  	    <value>classpath:config.properties</value>   
+	  	</list>  
+	   </property>  
+	</bean>  
+    
+    <context:property-placeholder properties-ref="propertyConfigurer" />
+    
+	<!-- mysql 数据源配置 -->
+	<bean id="dataSourceOne" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="defaultAutoCommit" value="false" />
+        <property name="initialSize" value="${jdbc.pool.initialSize}" />
+        <property name="maxActive" value="${jdbc.pool.maxActive}" />
+        <property name="minIdle" value="${jdbc.pool.minIdle}" />
+        <property name="maxIdle" value="${jdbc.pool.maxIdle}" />
+	</bean>
+
+	<bean id="mysqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceOne" />
+		<property name="configLocation" value="classpath:/mybatis-Configuration.xml" />
+	</bean>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="mysqlSessionFactory"></constructor-arg>
+	</bean>
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+    </bean> 
+    
+    <bean id="asyncRestTemplate" class="org.springframework.web.client.AsyncRestTemplate">
+    </bean>
+    
+	<!-- 扫描 basePackage下所有的接口，根据对应的mapper.xml为其生成代理类 -->
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.zehin.base.persistence" />
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+	   <property name="defaultEncoding" value="utf-8" />
+       <property name="maxUploadSize" value="10485760000" />
+       <property name="maxInMemorySize" value="40960" />
+	</bean> 
+	
+	
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"> 
+        <property name="messageConverters"> 
+            <list>  
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"> 
+                    <property name="supportedMediaTypes"> 
+                        <list> 
+                            <value>text/html; charset=utf-8</value> 
+                        </list> 
+                    </property> 
+                </bean>
+            </list>  
+        </property> 
+    </bean>
+	
+	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceOne"></property>
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="save*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="add*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="*" propagation="REQUIRED" read-only="true" 
+				rollback-for="java.lang.Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="transactionmobilePointCut"
+			expression="execution(* com.zehin.*.service..*.*(..))" />
+		<aop:pointcut id="transactionsystemmanagePointCut"
+			expression="execution(* com.zehin.*.service..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionmobilePointCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionsystemmanagePointCut" />
+	</aop:config>
+
+	<bean id="mapper" class="org.dozer.DozerBeanMapper"></bean>
+	<bean class="com.zehin.common.SpringContextHolder"></bean>
+	
+	
+	
+	<!-- dwr对应的 beanNam -->  
+    <bean id="dwrService" class="com.zehin.common.controller.DwrController"></bean>
+</beans>
+					

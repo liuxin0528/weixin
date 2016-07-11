@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance http://www.springmodules.org/schema/cache/springmodules-cache.xsd http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	
+  <display-name>test</display-name>
+  
+  <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  
+  <filter>
+      <filter-name>encodingFilter</filter-name>
+      <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+      <init-param>
+          <param-name>encoding</param-name>
+          <param-value>UTF-8</param-value>
+      </init-param>
+  </filter>
+  <filter-mapping>
+      <filter-name>encodingFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+  <listener>
+      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  
+  <servlet>
+      <servlet-name>springmvc</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+          <param-name>contextConfigLocation</param-name>
+          <param-value>classpath:applicationContext-*.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>springmvc</servlet-name>
+      <url-pattern>*.action</url-pattern>
+      <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 加入dwr支持 -->
+  <servlet>
+      <servlet-name>dwr</servlet-name>
+      <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+      <init-param>
+          <param-name>contextConfigLocation</param-name>
+          <param-value>/WEB-INF/dwr.xml</param-value>
+      </init-param>
+      <!-- 测试环境下，需要开启debug模式，线上环境需要关闭 -->
+      <init-param>
+          <param-name>debug</param-name>
+          <param-value>true</param-value>
+      </init-param>
+      <!-- 允许跨域 -->
+      <init-param>
+          <param-name>crossDomainSessionSecurity</param-name>
+          <param-value>false</param-value>
+      </init-param>
+      <!-- 脚本压缩 -->
+      <init-param>
+          <param-name>scriptCompressed</param-name>
+          <param-value>false</param-value>
+      </init-param>
+      <!-- commet and poll方式 -->
+      <init-param>
+          <param-name>pollAndCometEnabled</param-name>
+          <param-value>true</param-value>
+      </init-param>
+      <init-param>
+          <param-name>disconnectedTime</param-name>
+          <param-value>5000</param-value>
+      </init-param>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>dwr</servlet-name>
+      <url-pattern>/dwr/*</url-pattern>
+  </servlet-mapping>
+  
+  
+  <jsp-config>
+      <tablib>
+          <tablib-uri>/zehin</tablib-uri>
+          <tablib-location>/WEB-INF/tld/zehin.tld</tablib-location>
+      </tablib>
+  </jsp-config>
+  
+  
+  <welcome-file-list>
+      <welcome-file>/index.jsp</welcome-file>
+  </welcome-file-list>
+  
+</web-app>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	version="2.0" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	
+<description><![CDATA["自定义标签"]]></description>
+<tlib-version>1.0</tlib-version>
+<short-name>zh</short-name>
+<uri>/zehin</uri>
+
+<!-- 公共的头标签，引入大部分js,css,以及绝对路径等信息 -->
+<tag>
+	<description><![CDATA[公共的头标签，引入大部分js,css,以及绝对路径等信息]]></description>
+    <name>commonHead</name>
+    <tag-class>com.zehin.common.tag.CommonHeadTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+    	<description><![CDATA[是否需要easyui:需要true;不需要false]]></description>
+        <name>easyui</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+    	<description><![CDATA[是否需要angularJs:需要true;不需要false;默认不需要]]></description>
+    	<name>angularJs</name>
+    	<required>false</required>
+    	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+</tag>
+
+<!-- 数据字典的下拉 -->
+<tag>
+	<description><![CDATA["数据字典的下拉"]]></description>
+	<name>comboboxByGroup</name>
+	<tag-class>com.zehin.common.tag.ComBoboxByGroupTag</tag-class>
+	<body-content>scriptless</body-content>
+	<attribute>
+ 		<description><![CDATA[唯一标识，使用时注意ID，不要重复使用]]></description>
+ 		<name>id</name>
+ 		<required>true</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[控件name]]></description>
+ 		<name>name</name>
+ 		<required>false</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[控件width]]></description>
+ 		<name>width</name>
+ 		<required>false</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[数据字典的组ID]]></description>
+ 		<name>groupId</name>
+ 		<required>true</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[是否有空的选项]]></description>
+ 		<name>emptyValueFlag</name>
+ 		<required>false</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA["是否必填,生效的前提是emptyValueFlag为false"]]></description>
+ 		<name>required</name>
+ 		<required>false</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+</tag> 
+ 
+<!-- sql下拉 -->
+<tag>
+	<description><![CDATA["sql下拉"]]></description>
+	<name>comboboxBySql</name>
+	<tag-class>com.zehin.common.tag.ComBoboxBySqlTag</tag-class>
+	<body-content>scriptless</body-content>
+	<attribute>
+ 		<description><![CDATA[唯一标识，使用时注意ID，不要重复使用]]></description>
+ 		<name>id</name>
+ 		<required>true</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[控件name]]></description>
+ 		<name>name</name>
+ 		<required>false</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[控件width]]></description>
+ 		<name>width</name>
+ 		<required>false</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[数据字典的组ID]]></description>
+ 		<name>sql</name>
+ 		<required>true</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[定义下拉valueField]]></description>
+ 		<name>valueField</name>
+ 		<required>true</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[定义下拉textField显示值]]></description>
+ 		<name>textField</name>
+ 		<required>true</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA[是否有空的选项]]></description>
+ 		<name>emptyValueFlag</name>
+ 		<required>false</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+ 	<attribute>
+ 		<description><![CDATA["是否必填,生效的前提是emptyValueFlag为false"]]></description>
+ 		<name>required</name>
+ 		<required>false</required>
+ 		<rtexprvalue>false</rtexprvalue>
+ 	</attribute>
+</tag>
+
+<!-- datagrid -->
+ <tag>
+ 	<description><![CDATA["datagrid"]]></description>
+	<name>datagrid</name>
+	<tag-class>com.zehin.common.tag.DatagridTag</tag-class>
+	<body-content>scriptless</body-content>
+	
+	<attribute>
+		<description><![CDATA["唯一标识，使用时注意ID，不要重复使用"]]></description>
+		<name>id</name>
+		<required>true</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<description><![CDATA["列标识"]]></description>
+		<name>colModel</name>
+		<required>true</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<description><![CDATA["实现类的标识"]]></description>
+		<name>serviceId</name>
+		<required>true</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<description><![CDATA["datagrid标题"]]></description>
+		<name>title</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<description><![CDATA["是否单选true or false--默认单选"]]></description>
+		<name>singleSelect</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<description><![CDATA["每页多少条数据--默认10条"]]></description>
+		<name>pageSize</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<description><![CDATA["搜索框的ID"]]></description>
+		<name>searchboxId</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<description><![CDATA["组织机构树节点ID"]]></description>
+		 <name>treeNodeId</name>
+		 <required>false</required>
+		 <rtexprvalue>false</rtexprvalue>
+	</attribute>
+ </tag>
+ 
+ 
+ 
+</taglib>
